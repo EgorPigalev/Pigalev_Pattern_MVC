@@ -11,8 +11,8 @@ namespace Паттерн_MVC
     public static class Model
     {
         // блок с данными
-        public static double numberFirst;
-        public static double numberSecondly;
+        public static string firstField;
+        public static string secondlyField;
         public static List<string> dataListDisplay = new List<string>() { "Сложение", "Вычитание", "Умножение", "Деление" }; // Список для выбора из comboBox
         public static List<string> dataListValue = new List<string>() { "+", "-", "*", "/" }; // Список для вывода в textBox
 
@@ -32,29 +32,46 @@ namespace Паттерн_MVC
         {
             set
             {
-                switch(value)
+                try
                 {
-                    case 0:
-                        tbResult.Text = Convert.ToString(numberFirst + numberSecondly);
-                        break;
-                    case 1:
-                        tbResult.Text = Convert.ToString(numberFirst - numberSecondly);
-                        break;
-                    case 2:
-                        tbResult.Text = Convert.ToString(numberFirst * numberSecondly);
-                        break;
-                    case 3:
-                        if(numberSecondly == 0)
-                        {
-                            tbResult.Text = "Деление на 0 (ноль) не допустимо";
-                        }
-                        else
-                        {
-                            tbResult.Text = Convert.ToString(numberFirst / numberSecondly);
-                        }
-                        break;
+                    double numberFirst = 0;
+                    double numberSecondly = 0;
+                    if (firstField != "")
+                    {
+                        numberFirst = Convert.ToDouble(firstField);
+                    }
+                    if (secondlyField != "")
+                    {
+                        numberSecondly = Convert.ToDouble(secondlyField);
+                    }
+                    switch (value)
+                    {
+                        case 0:
+                            tbResult.Text = Convert.ToString(numberFirst + numberSecondly);
+                            break;
+                        case 1:
+                            tbResult.Text = Convert.ToString(numberFirst - numberSecondly);
+                            break;
+                        case 2:
+                            tbResult.Text = Convert.ToString(numberFirst * numberSecondly);
+                            break;
+                        case 3:
+                            if (numberSecondly == 0)
+                            {
+                                tbResult.Text = "Деление на 0 (ноль) не допустимо";
+                            }
+                            else
+                            {
+                                tbResult.Text = Convert.ToString(numberFirst / numberSecondly);
+                            }
+                            break;
+                    }
                 }
-            }
+                catch
+                {
+                    MessageBox.Show("При вычисление арифметической операции возникла ошибка");
+                }
+        }
         }
     }
 }

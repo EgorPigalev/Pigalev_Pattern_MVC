@@ -44,30 +44,9 @@ namespace Паттерн_MVC
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (tbFirstField.Text != "")
-                {
-                    Model.numberFirst = Convert.ToDouble(tbFirstField.Text);
-                }
-                else
-                {
-                    Model.numberFirst = 0;
-                }
-                if (tbSecondlyField.Text != "")
-                {
-                    Model.numberSecondly = Convert.ToDouble(tbSecondlyField.Text);
-                }
-                else
-                {
-                    Model.numberSecondly = 0;
-                }
-                Model.CalculationResult = cbArithmeticOperation.SelectedIndex;
-            }
-            catch
-            {
-                MessageBox.Show("При вычисление арифметической операции возникла ошибка");
-            }
+            Model.firstField = tbFirstField.Text;
+            Model.secondlyField = tbSecondlyField.Text;
+            Model.CalculationResult = cbArithmeticOperation.SelectedIndex;
         }
     }
 }
